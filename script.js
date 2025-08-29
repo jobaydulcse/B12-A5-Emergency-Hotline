@@ -1,97 +1,97 @@
-function getById(id){
-    return document.getElementById(id);
+function getById(id) {
+  return document.getElementById(id);
 }
 
 let hotlineEl = getById("hotline");
 let hotlineNumbers = [
-    {
-        icon: "emergency",
-        iconBg: "bg-[#ffe3e2]",
-        head: "National Emergency Number",
-        subhead: "National Emergency",
-        number: "999",
-        category: "All",
-    },
-    {
-        icon: "police",
-        iconBg: "bg-[#dfefff]",
-        head: "Police Helpline Number",
-        subhead: "Police",
-        number: "999",
-        category: "Police",
-    },
-    {
-        icon: "fire-service",
-        iconBg: "bg-[#ffe3e2]",
-        head: "Fire Service Number",
-        subhead: "Fire Service",
-        number: "999",
-        category: "Fire",
-    },
-    {
-        icon: "ambulance",
-        iconBg: "bg-[#ffe3e2]",
-        head: "Ambulance Service",
-        subhead: "Ambulance",
-        number: "1994-999999",
-        category: "Health",
-    },
-    {
-        icon: "emergency",
-        iconBg: "bg-[#ffe3e2]",
-        head: "Women & Child Helpline",
-        subhead: "Women & Child Helpline",
-        number: "109",
-        category: "Help",
-    },
-    {
-        icon: "emergency",
-        iconBg: "bg-[#ffe3e2]",
-        head: "Anti-Corruption Helpline",
-        subhead: "Anti-Corruption",
-        number: "106",
-        category: "Govt.",
-    },
-    {
-        icon: "emergency",
-        iconBg: "bg-[#ffe3e2]",
-        head: "Electricity Helpline",
-        subhead: "Electricity Outage",
-        number: "16216",
-        category: "Electricity",
-    },
-    {
-        icon: "brac",
-        iconBg: "bg-pink-100",
-        head: "Brac Helpline",
-        subhead: "Brac",
-        number: "16445",
-        category: "NGO",
-    },
-    {
-        icon: "Bangladesh-Railway",
-        iconBg: "bg-amber-100",
-        head: "Bangladesh Railway Helpline ",
-        subhead: "Bangladesh Railway",
-        number: "163",
-        category: "Travel",
-    },
+  {
+    icon: "emergency",
+    iconBg: "bg-[#ffe3e2]",
+    head: "National Emergency Number",
+    subhead: "National Emergency",
+    number: "999",
+    category: "All",
+  },
+  {
+    icon: "police",
+    iconBg: "bg-[#dfefff]",
+    head: "Police Helpline Number",
+    subhead: "Police",
+    number: "999",
+    category: "Police",
+  },
+  {
+    icon: "fire-service",
+    iconBg: "bg-[#ffe3e2]",
+    head: "Fire Service Number",
+    subhead: "Fire Service",
+    number: "999",
+    category: "Fire",
+  },
+  {
+    icon: "ambulance",
+    iconBg: "bg-[#ffe3e2]",
+    head: "Ambulance Service",
+    subhead: "Ambulance",
+    number: "1994-999999",
+    category: "Health",
+  },
+  {
+    icon: "emergency",
+    iconBg: "bg-[#ffe3e2]",
+    head: "Women & Child Helpline",
+    subhead: "Women & Child Helpline",
+    number: "109",
+    category: "Help",
+  },
+  {
+    icon: "emergency",
+    iconBg: "bg-[#ffe3e2]",
+    head: "Anti-Corruption Helpline",
+    subhead: "Anti-Corruption",
+    number: "106",
+    category: "Govt.",
+  },
+  {
+    icon: "emergency",
+    iconBg: "bg-[#ffe3e2]",
+    head: "Electricity Helpline",
+    subhead: "Electricity Outage",
+    number: "16216",
+    category: "Electricity",
+  },
+  {
+    icon: "brac",
+    iconBg: "bg-pink-100",
+    head: "Brac Helpline",
+    subhead: "Brac",
+    number: "16445",
+    category: "NGO",
+  },
+  {
+    icon: "Bangladesh-Railway",
+    iconBg: "bg-amber-100",
+    head: "Bangladesh Railway Helpline ",
+    subhead: "Bangladesh Railway",
+    number: "163",
+    category: "Travel",
+  },
 ];
 
 let heartCount = 0;
 let heartCountEl = getById("heart-count");
 
-function increaseHeart(){
-    heartCount++;
-    heartCountEl.innerText = heartCount;
+function increaseHeart() {
+  heartCount++;
+  heartCountEl.innerText = heartCount;
 }
 
 let coinCount = 100;
 let coinCountEl = getById("coin-count");
 
 function createHistory(hotlineName, hotlineNumber) {
-    let callHistoryEl = getById("call-history");
-    callHistoryEl.innerHTML += `
+  let callHistoryEl = getById("call-history");
+  callHistoryEl.innerHTML += `
         <div class="bg-neutral-50 p-4 rounded-2xl flex justify-between items-center">
             <div>
                 <p class="text-[18px] font-semibold text-[#111]">${hotlineName}</p>
@@ -106,36 +106,38 @@ function createHistory(hotlineName, hotlineNumber) {
 
 let clearHistoryBtn = getById("clear-history-btn");
 
-function clearHistory(){
-    let callHistoryEl = getById("call-history");
-    callHistoryEl.innerHTML = "";
+function clearHistory() {
+  let callHistoryEl = getById("call-history");
+  callHistoryEl.innerHTML = "";
 }
 
-clearHistoryBtn.addEventListener('click', clearHistory);
+clearHistoryBtn.addEventListener("click", clearHistory);
 
 let copyCount = 0;
 let copyCountEl = getById("copy-count");
 
-function copyNumber(number){
-    copyCount++;
-    copyCountEl.innerHTML = copyCount;
-    navigator.clipboard.writeText(number);
-    alert(`Number copied: ${number}`)
+function copyNumber(number) {
+  copyCount++;
+  copyCountEl.innerHTML = copyCount;
+  navigator.clipboard.writeText(number);
+  alert(`Number copied: ${number}`);
 }
 
-function callEmergency(hotlineName, hotlineNumber){
-    if(coinCount < 20){
-        alert("❌ You don't have sufficient coin! To make call, you need at least 20 coins.");
-        return;
-    }
-    coinCount -= 20;
-    coinCountEl.innerText = coinCount;
-    alert(`📞 Calling ${hotlineName} ${hotlineNumber}...`);
-    createHistory(hotlineName, hotlineNumber);
+function callEmergency(hotlineName, hotlineNumber) {
+  if (coinCount < 20) {
+    alert(
+      "You don't have sufficient coin! To make call, you need at least 20 coins."
+    );
+    return;
+  }
+  coinCount -= 20;
+  coinCountEl.innerText = coinCount;
+  alert(`📞 Calling ${hotlineName} ${hotlineNumber}...`);
+  createHistory(hotlineName, hotlineNumber);
 }
 
-for(let hotline of hotlineNumbers){
-    hotlineEl.innerHTML += `
+for (let hotline of hotlineNumbers) {
+  hotlineEl.innerHTML += `
         <div class="card w-full bg-base-100 shadow-sm">
             <div class="p-4">
                 <div class="flex justify-between items-center">
